@@ -1,0 +1,10 @@
+body {
+  transition: 1s background-image;
+  /* background-image: url("https://images.unsplash.com/photo-1496167117681-944f702be1f4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80"); */
+  background-image: url("DSC02235.JPG");
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgb(242, 239, 248);
+}
