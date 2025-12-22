@@ -3,135 +3,116 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hurricane Live</title>
+    <title>Hurricane Helene Live Watch</title>
     <link rel="stylesheet" href="styles.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <p class="card-text" style="text-align: center">
-      <b
-        style="
-          color: rgb(8, 8, 8);
-          text-shadow: 0 1px 0px #378ab4, 1px 0 0px #5dabcd, 1px 2px 1px #378ab4,
-            2px 1px 1px #5dabcd, 2px 3px 2px #378ab4, 3px 2px 2px #5dabcd,
-            3px 4px 2px #378ab4, 4px 3px 3px #5dabcd, 4px 5px 3px #378ab4,
-            5px 4px 2px #5dabcd, 5px 6px 2px #378ab4, 6px 5px 2px #5dabcd,
-            6px 7px 1px #378ab4, 7px 6px 1px #5dabcd, 7px 8px 0px #378ab4,
-            8px 7px 0px #5dabcd;
-          font-size: 30px;
-          font-family: 'Libre Baskerville', serif;
-        "
-        >The hurricane HELENE🌧️⛈️☔️🌊 aftermath</b
-      >
-    </p>
-    <div class="container">
-      <div class="row">
-        <p class="card-text col-sm" style="text-align: center">
-          <img
-            width="560"
-            height="315"
-            src="DSC02270.JPG"
-            alt="beach with sun an clouds"
-          />
-        </p>
-        <!-- add a paragraph with description for hurricane helene -->
+    <script>
+      async function loadWeather() {
+        try {
+          const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=Tampa,FL,US&appid=demo&units=imperial');
+          const data = await response.json();
+          
+          if (data.cod === 200) {
+            document.getElementById('weatherDisplay').innerHTML = `
+              <div class="weather-info">
+                <div class="weather-icon">${getWeatherIcon(data.weather[0].main)}</div>
+                <div class="weather-temp">${Math.round(data.main.temp)}°F</div>
+                <div class="weather-desc">${data.weather[0].description}</div>
+                <div class="weather-location">Tampa, Florida</div>
+                <div class="weather-details">
+                  <span>Feels like ${Math.round(data.main.feels_like)}°F</span>
+                  <span>Humidity ${data.main.humidity}%</span>
+                </div>
+              </div>
+            `;
+          } else {
+            throw new Error('Weather data unavailable');
+          }
+        } catch (error) {
+          document.getElementById('weatherDisplay').innerHTML = `
+            <div class="loading">Loading weather data...</div>
+          `;
+        }
+      }
 
-        <!-- <a class="card-text col-sm" style="text-align: center; font-family: 'Libre Baskerville', serif; color: rgb(42, 29, 81); font-size: 20px; text-shadow: 0 1px 0px #378ab4, 1px 0 0px #5dabcd,
-        1px 2px 1px #378ab4, 2px 1px 1px #5dabcd, 2px 3px 2px #378ab4,
-        3px 2px 2px #5dabcd, 3px 4px 2px #378ab4, 4px 3px 3px #5dabcd,
-        4px 5px 3px #378ab4, 5px 4px 2px #5dabcd, 5px 6px 2px #378ab4,
-        6px 5px 2px #5dabcd, 6px 7px 1px #378ab4, 7px 6px 1px #5dabcd,
-        7px 8px 0px #378ab4, 8px 7px 0px #5dabcd;" target="_blank" href="https://www.google.com/maps/@33.0978955,-86.15844,6z/data=!3m1!4b1!4m2!21m1!1s%2Fg%2F11wfgrt18s?entry=ttu&g_ep=EgoyMDI0MDkyNC4wIKXMDSoASAFQAw%3D%3D"> Category 3 hurricane <br>wind speeds of 120 mph <br> 🌧️⛈️🌧️ <br>  ☔️  <br> 💦💦💦 <br>CLICK FOR MORE INFO✅ </a> -->
-          <a
-            target="_blank"
-            style="
-              background-image: url(https://images.unsplash.com/photo-1605841561924-926295c558fd?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-              font-family: 'Libre Baskerville', serif;
-              font-size: 30px;
-              color: rgb(42, 29, 81);
-              background-position: center;
-              background-size: cover;
-              background-repeat: no-repeat;
-              padding: 10px;
-              margin: 10px;
-              border-radius: 10px;
-              text-align: center;
-              text-shadow: 0 1px 0px #378ab4, 1px 0 0px #5dabcd,
-                1px 2px 1px #378ab4, 2px 1px 1px #5dabcd, 2px 3px 2px #378ab4,
-                3px 2px 2px #5dabcd, 3px 4px 2px #378ab4, 4px 3px 3px #5dabcd,
-                4px 5px 3px #378ab4, 5px 4px 2px #5dabcd, 5px 6px 2px #378ab4,
-                6px 5px 2px #5dabcd, 6px 7px 1px #378ab4, 7px 6px 1px #5dabcd,
-                7px 8px 0px #378ab4, 8px 7px 0px #5dabcd;
-            "
-            class="card-title dropdown-item justify-content-center text-center bg-info col-sm"
-            href="https://www.msn.com/en-us/weather/maps/hurricane/in-Tampa,FL?zoom=6"
-            >Click for LIVE hurricane map ☔️</a
-          >
-        </p>
-      </div>
-    </div>
+      function getWeatherIcon(condition) {
+        const icons = {
+          'Clear': '☀️',
+          'Clouds': '☁️',
+          'Rain': '🌧️',
+          'Thunderstorm': '⛈️',
+          'Snow': '❄️',
+          'Mist': '🌫️',
+          'Fog': '🌫️'
+        };
+        return icons[condition] || '🌤️';
+      }
 
-    <div class="card-text" style="text-align: center">
-
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/V59N_gThgTI?si=Q2m5DBEd77ZX3D99" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/Iiukc5Z5kA0?si=HQFLHwQA_5hwVtTQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/G_O_lpdFpAs?si=6WKpwCO0AkbgTwsV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+      loadWeather();
+    </script>
+    <div class="hero-section">
+      <h1 class="hero-title">Track Florida hurricane activity</h1>
       
-      <div class="container">
-        <div class="row">
-          <p class="col-sm">
-            <img
-              width="560"
-              height="315"
-              src="DSC02284.JPG"
-              alt="beach with sun an clouds"
-            />
-          </p>
+      <div class="map-container">
+        <div class="map-frame">
+          <a href="https://www.msn.com/en-us/weather/maps/hurricane/in-Tampa,FL?zoom=6" target="_blank">
+            <div class="map-placeholder">
+              <div class="map-icon">🌀</div>
+              <p>Hurricane Map</p>
+              <small>Click to view live tracking</small>
+            </div>
+          </a>
+        </div>
 
-          <p class="col-sm">
-            <img
-              width="560"
-              height="315"
-              src="DSC02209.JPG"
-              alt="beach with sun an clouds"
-            />
-          </p>
+        <div class="map-frame">
+          <div class="weather-display" id="weatherDisplay">
+            <div class="loading">Loading Florida weather...</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-      crossorigin="anonymous"
-    ></script>
+    <div class="content-section">
+
+      <div class="media-grid">
+        <div class="media-item">
+          <img src="DSC02270.JPG" alt="Hurricane Helene aftermath - beach scene" />
+        </div>
+        
+        <div class="media-item">
+          <iframe src="https://www.youtube.com/embed/V59N_gThgTI?si=Q2m5DBEd77ZX3D99" 
+                  title="Hurricane Helene Coverage" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  allowfullscreen></iframe>
+        </div>
+
+        <div class="media-item">
+          <iframe src="https://www.youtube.com/embed/Iiukc5Z5kA0?si=HQFLHwQA_5hwVtTQ" 
+                  title="Hurricane Helene Updates" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  allowfullscreen></iframe>
+        </div>
+
+        <div class="media-item">
+          <iframe src="https://www.youtube.com/embed/G_O_lpdFpAs?si=6WKpwCO0AkbgTwsV" 
+                  title="Hurricane Helene Analysis" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  allowfullscreen></iframe>
+        </div>
+
+        <div class="media-item">
+          <img src="DSC02284.JPG" alt="Hurricane Helene damage assessment" />
+        </div>
+
+        <div class="media-item">
+          <img src="DSC02209.JPG" alt="Post-hurricane coastal conditions" />
+        </div>
+      </div>
+    </div>
   </body>
 </html>

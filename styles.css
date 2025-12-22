@@ -1,10 +1,238 @@
-body {
-  transition: 1s background-image;
-  /* background-image: url("https://images.unsplash.com/photo-1496167117681-944f702be1f4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80"); */
-  background-image: url("DSC02235.JPG");
+:root {
+  --florida-blue: #0077be;
+  --florida-teal: #17a2b8;
+  --florida-coral: #ff6b6b;
+  --florida-sand: #f4f1e8;
+  --florida-palm: #2d5016;
+  --florida-sunset: linear-gradient(135deg, #ff6b6b, #ffa726, #42a5f5);
+}
 
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: rgb(242, 239, 248);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--florida-sunset);
+  background-attachment: fixed;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  color: white;
+  text-shadow: 2px 2px 20px rgba(0,0,0,0.5);
+  margin-bottom: 2rem;
+  animation: fadeInUp 1s ease-out;
+}
+
+.content-section {
+  background: rgba(255,255,255,0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  margin: 2rem;
+  padding: 3rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  animation: slideInUp 0.8s ease-out;
+}
+
+.map-container {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.map-frame {
+  width: 300px;
+  height: 250px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.map-frame:hover {
+  transform: scale(1.02);
+}
+
+.map-frame a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+.map-placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: linear-gradient(135deg, var(--florida-teal), var(--florida-blue));
+  color: white;
+  text-align: center;
+}
+
+.map-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.map-placeholder p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.map-placeholder small {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.weather-display {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-info, .weather-fallback {
+  text-align: center;
+  color: white;
+  background: linear-gradient(135deg, var(--florida-coral), #ffa726);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.weather-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.weather-temp {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.weather-desc {
+  font-size: 1rem;
+  text-transform: capitalize;
+  margin-bottom: 0.3rem;
+}
+
+.weather-location {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.weather-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.loading {
+  color: var(--florida-blue);
+  font-size: 1.2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .map-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .map-frame {
+    width: 90vw;
+    max-width: 350px;
+  }
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.media-item {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.media-item:hover {
+  transform: scale(1.05);
+}
+
+.media-item img, .media-item iframe {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .content-section {
+    margin: 1rem;
+    padding: 2rem;
+  }
+  
+  .media-grid {
+    grid-template-columns: 1fr;
+  }
 }
